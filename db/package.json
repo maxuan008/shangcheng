@@ -1,0 +1,20 @@
+{
+  "name": "xiaochuang_db",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "migrate:new": "egg-sequelize migration:create",
+    "migrate:up": "egg-sequelize db:migrate",
+    "migrate:down": "egg-sequelize db:migrate:undo",
+    "migrate:downAll": "egg-sequelize db:migrate:undo:all"
+  },
+  "dependencies": {
+    "co": "^4.6.0",
+    "egg-sequelize": "^3.1.4",
+    "mysql2": "^1.5.3",
+    "pg": "^7.4.3",
+    "pg-hstore": "^2.3.2",
+    "sequelize": "^4.43.2"
+  }
+}

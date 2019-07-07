@@ -1,0 +1,14 @@
+logs/
+yarn.lock
+yarn-error.log
+node_modules/
+config/
+package-lock.json
+.idea/
+run/
+out/
+.DS_Store
+*.sw*
+*.un~
+.history/
+.vscode

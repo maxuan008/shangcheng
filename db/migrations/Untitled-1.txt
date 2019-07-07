@@ -1,0 +1,55 @@
+        //股东
+        [
+            {companyShareholders_id , company_id , name,  position , holdingRate, investmentAmount  , type   },
+            {companyShareholders_id , company_id , name,  position , holdingRate, investmentAmount  , type   },
+            {companyShareholders_id , company_id , name,  position , holdingRate, investmentAmount  , type   }
+        ]
+
+        //主要人员
+        [   
+            {companyEmployees_id ,  company_id , name , position },
+            {companyEmployees_id ,  company_id , name , position },
+            {companyEmployees_id ,  company_id , name , position }
+
+        ]
+
+        
+        
+        yield db.createTable('companyShareholders', {
+            
+            companyShareholders_id: {
+                type: INTEGER(11),
+                primaryKey: true,
+                autoIncrement: true
+            },
+
+            company_id: INTEGER(11),
+            name: STRING(100),
+            position: INTEGER(2), //含义：
+            holdingRate: DECIMAL(6, 5), //持股比例
+            investmentAmount: STRING(100), //认缴出资额
+            type: INTEGER(2), //含义
+
+            isValid: { type: INTEGER(2), defaultValue: 1 }, //是否有效
+            createdAt: DATE,
+            updatedAt: DATE,
+            deletedAt: DATE
+        })
+
+        yield db.createTable('companyEmployees', {
+            //主要人员
+            companyEmployees_id: {
+                type: INTEGER(11),
+                primaryKey: true,
+                autoIncrement: true
+            },
+
+            company_id: INTEGER(11),
+            name: STRING(100),
+            position: INTEGER(2), //含义：职位
+
+            isValid: { type: INTEGER(2), defaultValue: 1 }, //是否有效
+            createdAt: DATE,
+            updatedAt: DATE,
+            deletedAt: DATE
+        })

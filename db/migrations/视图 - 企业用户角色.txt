@@ -1,0 +1,26 @@
+-- 企业用户角色
+
+CREATE VIEW `userassociateview` AS
+
+select 
+a.userassociate_id,  
+a.user_id, b.`name` as userName,
+ a.company_id , d.`name` as companyName,
+ a.department_id, c.`name` as departmentName,
+ a.role_id, e.`name` as roleName,
+ a.isauditing
+from 
+`userassociate` as a , 
+`user` as b,
+`department` as c,
+`company` as d,
+`role` as e 
+where 
+a.user_id = b.user_id and a.company_id = d.company_id
+and a.department_id = c.department_id and a.role_id = e.role_id
+and ISNULL(a.deletedAt)
+and ISNULL(b.deletedAt)
+and ISNULL(c.deletedAt)
+and ISNULL(d.deletedAt)
+and ISNULL(e.deletedAt)
+

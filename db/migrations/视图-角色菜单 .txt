@@ -1,0 +1,26 @@
+-- 角色菜单
+CREATE VIEW `rolefunview` AS
+select  
+   `rolefun`.rolefun_id , `rolefun`.isUse ,
+    `companyfun`.companyfun_id,
+   `fun`.fun_id , `fun`.name as funName,
+   `role`.role_id,  `role`.name as roleName,
+   `group`.group_id , `group`.name as groupName ,
+   `company`.company_id, `company`.name as  companyName
+ from 
+`rolefun`  ,
+`companyfun` ,
+`role` ,
+`fun`  ,
+`company` ,
+`group`
+
+where 
+  `rolefun`.role_id = `role`.role_id and `rolefun`.companyfun_id = `companyfun`.companyfun_id  and   
+ `companyfun`.company_id = `company`.company_id and `companyfun`.fun_id = `fun`.fun_id
+ and `company`.group_id = `group`.group_id and `fun`.group_id =  `group`.group_id
+ and  ISNULL(`rolefun`.`deletedAt`)  
+ and  ISNULL(`companyfun`.`deletedAt`)
+ and  ISNULL(`role`.`deletedAt`)
+ and  ISNULL(`company`.`deletedAt`)
+ and  ISNULL(`group`.`deletedAt`)

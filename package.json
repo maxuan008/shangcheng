@@ -1,0 +1,41 @@
+{
+  "name": "log",
+  "version": "1.0.0",
+  "description": "log system",
+  "main": "index.js",
+  "scripts": {
+    "debug": "egg-bin debug",
+    "start": "egg-bin dev",
+    "cov": "egg-bin cov",
+
+    "dev": "egg-bin dev",
+    "start-dev": "EGG_SERVER_ENV=dev egg-scripts start  --daemon --title=shangcheng-dev",
+    "stop-dev": "egg-scripts stop --title=shangcheng-dev",
+
+    "test": "EGG_SERVER_ENV=test  egg-bin --port=7013 dev",
+    "start-test": "EGG_SERVER_ENV=test egg-scripts start --port=7013 --daemon --title=shangcheng-test",
+    "stop-test": "egg-scripts stop --title=shangcheng-test",
+
+    "prod": "EGG_SERVER_ENV=prod  egg-bin dev",
+    "start-prod": "EGG_SERVER_ENV=prod egg-scripts start --port=7001 --daemon --title=shangcheng-prod",
+    "stop-prod": "egg-scripts stop --title=shangcheng-prod",
+    "restart-prod": "npm run stop-prod && npm run start-prod"
+
+  },
+  "author": "mx",
+  "license": "ISC",
+  "dependencies": {
+    "@elastic/elasticsearch": "^7.0.0-rc.2",
+    "amqplib": "^0.5.3",
+    "egg": "^2.22.0",
+    "egg-cors": "^2.2.0",
+    "egg-mongoose": "^3.2.0",
+    "egg-sequelize": "^5.1.0",
+    "moment": "^2.24.0",
+    "mysql2": "^1.6.5",
+    "uid-safe": "^2.1.5"
+  },
+  "devDependencies": {
+    "egg-bin": "^4.13.1"
+  }
+}
