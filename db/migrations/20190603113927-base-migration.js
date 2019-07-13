@@ -79,7 +79,8 @@ module.exports = {
         tel:      STRING(30),
         account:  STRING(30),
         password: STRING(70),
-
+        salt:     STRING(70), //盐
+        
         isPassChange: {type:INTEGER(3) , defaultValue: 0  }, //密码是否更改       //是否有效
         createdAt: DATE,
         updatedAt: DATE,

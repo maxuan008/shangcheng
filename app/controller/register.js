@@ -7,8 +7,15 @@ class RegisterController extends Controller {
         this.ctx.status = 200
     }
 
+    async getDepartmentAndRole(){
+        this.ctx.body = await this.service.register.getDepartmentAndRole(this.ctx.request.body)
+        this.ctx.status = 200     
+    }
 
-
+    async apply(){
+        this.ctx.body = await this.service.register.apply(this.ctx.request.body)
+        this.ctx.status = 200    
+    }
 
 
 

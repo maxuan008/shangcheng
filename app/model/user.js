@@ -28,6 +28,7 @@ module.exports = app => {
     tel:      STRING(30),  //手机号
     account:  STRING(30),  //账号
     password: STRING(70),
+    salt:     STRING(70), //盐
 
     isPassChange: {type:INTEGER(3) , defaultValue: 0  }, //密码是否更改
     createdAt: DATE,
@@ -42,7 +43,7 @@ module.exports = app => {
   })
 
   User.associate = function() {
-    User.belongsTo(app.model.Company, { foreignKey: 'company_id' })
+    //User.belongsTo(app.model.Company, { foreignKey: 'company_id' })
     User.hasMany(app.model.Userassociate, { foreignKey: 'user_id' })
   }
   User.model = model

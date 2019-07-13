@@ -44,7 +44,7 @@ module.exports = app => {
   Company.associate = function() {
     Company.belongsTo(app.model.Group, { foreignKey: 'group_id' })
     Company.hasMany(app.model.Role, { foreignKey: 'company_id' })
-    Company.hasMany(app.model.User, { foreignKey: 'company_id' })
+    //Company.hasMany(app.model.User, { foreignKey: 'company_id' })
     Company.hasMany(app.model.Department, { foreignKey: 'company_id' })
     Company.hasMany(app.model.Userassociate, { foreignKey: 'company_id' })
 

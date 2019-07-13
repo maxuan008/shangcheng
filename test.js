@@ -1,4 +1,19 @@
 const uid = require('uid-safe')
+const crypto = require('crypto')
+//console.log('盐',crypto.enc.Utf8.parse("salt"))
+
+
+// const sha256 = crypto.createHash("sha256");
+// sha256.update("hello,world!");
+// console.log(sha256.digest("hex"));
+
+
+//------------Hmac
+const hmac = crypto.createHmac("sha256","salt2dsfaasdfasfsadfdfasdfsdf").update("hello world!").digest("hex");
+
+console.log(hmac);
+
+
 async function fun() {
     
     let res1 = "aaaa" , res2 = {a:'bbb', b:'2', c:{d:'g'}}
@@ -20,7 +35,7 @@ async function fun() {
 
 }   
 
-fun()
+//fun()
 
 
 //let mapconfig = require('./share/mapconfig.js')
