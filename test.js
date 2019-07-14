@@ -9,9 +9,9 @@ const crypto = require('crypto')
 
 
 //------------Hmac
-const hmac = crypto.createHmac("sha256","salt2dsfaasdfasfsadfdfasdfsdf").update("hello world!").digest("hex");
+const hmac = crypto.createHmac("sha256","superadmin").update("admin").digest("hex");
 
-console.log(hmac);
+console.log(hmac,  );
 
 
 async function fun() {

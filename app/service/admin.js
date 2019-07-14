@@ -1,8 +1,8 @@
 const Service = require('egg').Service
 const uid = require('uid-safe')
 const path = require('path')
-
-class Factory extends Service {
+const crypto = require('crypto')
+class Admin extends Service {
 
 
     async searchcompanfun(body) {
@@ -29,10 +29,40 @@ class Factory extends Service {
         return { status:200,msg:'sucess', docs }
     }
     
+    async login(body){
+        console.log('user session ',this.ctx.session.userInfo)
+        let {tel, password} = body
+        if(!tel || !password) return {status:404, err:'tel, password 参数不正确'}
+        
+        let {User} = this.app.model
+        let user = await User.findOne({where:{tel, flag:-1}})
+        if(!user) return {status:404, err:'用户名或密码错误'}
+        
+        let {user_id,name,headUrl,account,flag, salt }= user
+        let hmac = crypto.createHmac("sha256",salt).update(password).digest("hex");
+        console.log('hmac:',hmac)
+        if(hmac == user.password  ){ //登陆成功
+            this.ctx.session.userInfo ={user_id,name,tel,headUrl,account,flag} 
+            return {status:200,  msg:'sucess'}
+        }else{
+            return  {status:404, err:'用户名或密码错误'}
+        }
+
+    }
+
+    async sessioninfo(body){
+        let {user_id,name,headUrl,tel,account,flag }=  this.ctx.session.userInfo
+        return {
+            status:200,   msg:'sucess',
+            datas:{
+                userInfo:{user_id,name,headUrl,tel,account,flag }  
+            }
+        }
+    }
 
 }
 
 
-module.exports = Factory
+module.exports = Admin
 
 

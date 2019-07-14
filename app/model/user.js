@@ -16,7 +16,7 @@ module.exports = app => {
      
   } = app.Sequelize
 
-  const model = {
+  const model = {  
     user_id: {    
       type: INTEGER(11),
       primaryKey: true,
@@ -27,10 +27,12 @@ module.exports = app => {
     headUrl:  STRING(150), 
     tel:      STRING(30),  //手机号
     account:  STRING(30),  //账号
+    email:    STRING(80),  //email
     password: STRING(70),
     salt:     STRING(70), //盐
-
+    flag: {type:INTEGER(3) , defaultValue: 0  }, // -1超管(集团级别操作) , 0:企业管理员 , 1:角色用户
     isPassChange: {type:INTEGER(3) , defaultValue: 0  }, //密码是否更改
+    
     createdAt: DATE,
     updatedAt: DATE,
     deletedAt: DATE

@@ -8,7 +8,15 @@ class FactoryController extends Controller {
         this.ctx.status = 200
     }
 
+    async login(){
+        this.ctx.body = await this.service.admin.login(this.ctx.request.body)
+        this.ctx.status = 200  
+    }
 
+    async sessioninfo(){
+        this.ctx.body = await this.service.admin.sessioninfo(this.ctx.request.body)
+        this.ctx.status = 200  
+    }
 
 }
 
