@@ -2,6 +2,7 @@ logs/
 yarn.lock
 yarn-error.log
 node_modules/
+api/
 config/
 package-lock.json
 .idea/
