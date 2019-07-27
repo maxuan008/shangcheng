@@ -84,7 +84,7 @@ class Factory extends Service {
                 return {status:200,msg:'sucess', data:res[0]} 
             } else {
                 console.log('数据已存在,不能重复插入', res[0].dataValues)
-                return {status:404,msg:'数据已存在,不能重复插入'} 
+                return {status:404,err:'已存在,不能重复插入'} 
             }
 
         }
@@ -146,7 +146,7 @@ class Factory extends Service {
 
             if(distdoc) { //有重名,失败, 
                 console.log('更新失败, 找到了去重条件的数据')
-                return {status:404,msg:'更新失败, 找到了去重条件的数据'}
+                return {status:404,err:'更新失败, 不能重名'}
             } else { //如果未找到含去重的数据，直接更新
                 Object.assign(doc,data)
                 await doc.save()
@@ -180,6 +180,31 @@ class Factory extends Service {
         await doc.destroy()
         return {status:200,msg:'sucess'}
     }
+
+    async destroyMany(body) {
+        let {Op} = this.app.Sequelize
+        let { mapflag ,keys  } = body
+
+        if(!mapflag) return {status:404, err:'mapflag参数不正确'}
+        if(Object.keys(this.app.config.mapTable).indexOf(mapflag) == -1)  return {status:403, err:'未能映射到对应的表,非法操作'}
+
+        let table = this.app.config.mapTable[mapflag].table
+        if(!table) return {status:404, err:'映射表错误:table'}
+
+        if(!keys) return {status:404, err:'keys参数错误'}
+        if(typeof(keys) != 'object') return {status:404, err:'keys参数必须为json'}
+        if(Object.keys(keys).length <= 0  ) return {status:404, err:'keys参数不能为空'}
+
+        // let doc = await this.app.model[table].findOne({where:keys})
+        // if(!doc) return {status:404, err:'要销毁的数据未找到'}
+        console.log(111,keys,table)
+        let where = {}
+        where[this.app.config.mapTable[mapflag].primarykey] = {[Op.in]:keys }
+        await this.app.model[table].destroy({where })
+        return {status:200,msg:'sucess'}
+    }
+    
+
 
 
 

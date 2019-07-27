@@ -23,7 +23,12 @@ class FactoryController extends Controller {
       this.ctx.status = 200;
     }
 
+    async destroyMany() {
+        this.ctx.body = await this.service.factory.destroyMany(this.ctx.request.body)
+        this.ctx.status = 200;
+      }
 
+    
 }
 
 module.exports = FactoryController

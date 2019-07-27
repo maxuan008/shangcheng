@@ -63,26 +63,16 @@ class Factory extends Service {
     }
 
     async apply(body){
-        console.log(body)
+        //console.log(body)
         // { company_id: '22',
         // department_id: '1',
         // role_id: '1',
         // tel: '12333333333',
         // userName: '张珊',
         // password: '111111' }
-        let {company_id, department_id,role_id, tel, userName, password } =body
-        // user_id: {    
-        //     type: INTEGER(11),
-        //     primaryKey: true,
-        //     autoIncrement: true
-        //   },
-        //   name:     STRING(100),  //姓名 
-        //   headUrl:  STRING(150), 
-        //   tel:      STRING(30),  //手机号
-        //   account:  STRING(30),  //账号
-        //   password: STRING(70),
-        //   salt:     STRING(70), //盐
+        let {company_id, department_id,role_id, tel, userName, password, contact } =body
 
+        if(!contact && tel)  contact = tel
         //1.添加用户
         let salt = await uid(10)
         password = crypto.createHmac("sha256",salt).update(body.password).digest("hex")
@@ -91,6 +81,7 @@ class Factory extends Service {
         let doc = {
             name:userName,
             tel,
+            contact,
             salt,
             password
          }

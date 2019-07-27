@@ -34,6 +34,7 @@ module.exports = app => {
     headUrl:  STRING(150), 
     tel:      STRING(30),  //手机号
     account:  STRING(30),  //账号
+    contact:  STRING(30),  //联系方式,注册时直接复制过来
 
     role_id: INTEGER(11),
     roleName: STRING(300), 

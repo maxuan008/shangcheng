@@ -1,3 +1,6 @@
+
+console.log(typeof [1,2,3])
+
 const uid = require('uid-safe')
 const crypto = require('crypto')
 //console.log('盐',crypto.enc.Utf8.parse("salt"))
@@ -11,7 +14,7 @@ const crypto = require('crypto')
 //------------Hmac
 const hmac = crypto.createHmac("sha256","superadmin").update("admin").digest("hex");
 
-console.log(hmac,  );
+console.log(100,hmac );
 
 
 async function fun() {

@@ -80,6 +80,9 @@ module.exports = {
         account:  STRING(30),
         password: STRING(70),
         salt:     STRING(70), //盐
+        flag: {type:INTEGER(3) , defaultValue: 0  }, // -1超管(集团级别操作),  -2:集团用户管理员 ---》管理登录界面  ;   1.企业管理员 , 2:角色用户 ---》用户登录界面.
+        group_id:INTEGER(11), //当flag：-2集团管理员时使用
+        contact:  STRING(30),  //联系方式,注册时直接复制过来
         
         isPassChange: {type:INTEGER(3) , defaultValue: 0  }, //密码是否更改       //是否有效
         createdAt: DATE,
